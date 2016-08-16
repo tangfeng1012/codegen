@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<codegen-config>
+  <project name="ProjectTest" lable="测试项目" outputEncoding="gbk" isDefault="false" isEnable="false">
+  	<copyright>
+  		<version>1.0</version>
+  		<author>tangfeng</author>
+  		<authorEmail>123@163.com</authorEmail>
+  		<company>hhly</company>
+  		<description></description>
+  		<createDate></createDate>
+  		<modifyDate></modifyDate>
+  	</copyright>
+  
+	<dbProvider class="com.hhly.codgen.service.impl.OracleProvider">
+		<jdbc>
+			<driver>oracle.jdbc.driver.OracleDriver</driver>
+			<url>jdbc:oracle:thin:@192.168.10.241:1521:orcl</url>
+			<username>APP</username>
+			<password>oRcl_123</password>
+		</jdbc>
+		<columnHandler class="com.hhly.codgen.service.impl.DataTypeConverterForJava" />
+	</dbProvider>
+	
+	<dataModel name="templateDirectory">template/AOWork</dataModel>
+	<dataModel name="outputDirectory">F:/makeCode</dataModel>
+	<dataModel name="basepackge">general</dataModel>
+	
+	<dataModel name="NamespaceAction" >com.hhly.${basepackge}.action</dataModel>
+	<dataModel name="NamespaceService">com.hhly.${basepackge}.service</dataModel>
+	<dataModel name="NamespaceServiceImpl">com.hhly.${basepackge}.service.impl</dataModel>
+	<dataModel name="NamespaceDao">com.hhly.${basepackge}.dao</dataModel>
+	<dataModel name="NamespaceDaoImpl">com.hhly.${basepackge}.dao.impl</dataModel>
+	<dataModel name="NamespaceEntity">com.hhly.${basepackge}.entity</dataModel>
+	<dataModel name="NamespaceDto">com.hhly.${basepackge}.dto</dataModel>
+	<dataModel name="NamespaceVo">com.hhly.${basepackge}.bo</dataModel>
+	<dataModel name="NamespaceMapper">com.hhly.${basepackge}.sqlmap</dataModel>
+	
+	<outputModel name="Action" type="file">
+		${NamespaceAction?replace(".","/")}/${entityName}Action.java
+	</outputModel>
+	<outputModel name="Service" type="file" disabled="true">
+		${NamespaceService?replace(".","/")}/I${entityName}Service.java
+	</outputModel>
+	<outputModel name="ServiceImpl" type="file" disabled="true">
+		${NamespaceServiceImpl?replace(".","/")}/${entityName}ServiceImpl.java
+	</outputModel>
+	<outputModel name="DAO" type="file" disabled="true">
+		${NamespaceDAO?replace(".","/")}/I${entityName}DAO.java
+	</outputModel>
+	<outputModel name="DAOImpl" type="file" disabled="true">
+		${NamespaceDAOImpl?replace(".","/")}/${entityName}DAOImpl.java
+	</outputModel>
+	<outputModel name="Entity" type="file">
+		${NamespaceEntity?replace(".","/")}/${moduleName}Entity.java
+	</outputModel>
+	<outputModel name="Dto" type="file">
+		${NamespaceDto?replace(".","/")}/${moduleName}Dto.java
+	</outputModel>
+	<outputModel name="Vo" type="file">
+		${NamespaceVo?replace(".","/")}/${moduleName}QryPar.java
+	</outputModel>
+	<outputModel name="MyBatisSqlMap" type="file" disabled="true">
+		${NamespaceMapper?replace(".","/")}/${entityName}.xml
+	</outputModel>
+	
+  </project>
+  
+  
+  <project name="OmsIceServerProject" lable="oms项目" outputEncoding="utf-8" isDefault="true" isEnable="true">
+  	<copyright>
+  		<version>1.0</version>
+  		<author>tf</author>
+  		<authorEmail>123@163.com</authorEmail>
+  		<company>bcs</company>
+  		<description></description>
+  		<createDate></createDate>
+  		<modifyDate></modifyDate>
+  	</copyright>
+  
+	<dbProvider class="com.hhly.codgen.service.impl.OracleProvider">
+		<jdbc>
+			<driver>oracle.jdbc.driver.OracleDriver</driver>
+			<url>jdbc:oracle:thin:@192.168.10.241:1521:orcl</url>
+			<username>APP</username>
+			<password>oRcl_123</password>
+		</jdbc>
+		<columnHandler class="com.hhly.codgen.service.impl.DataTypeConverterForJava" />
+	</dbProvider>
+	
+	<dataModel name="templateDirectory">template/omsiceserver</dataModel>
+	<dataModel name="outputDirectory">F:/makeCode</dataModel>
+	<dataModel name="basepackge">oms</dataModel>
+	
+	<dataModel name="NamespaceIceServer">com.hhly.${basepackge}.ice</dataModel>
+	<dataModel name="NamespaceService">com.hhly.${basepackge}.service</dataModel>
+	<dataModel name="NamespaceServiceImpl">com.hhly.${basepackge}.service.impl</dataModel>
+	<dataModel name="NamespaceMapper">com.hhly.${basepackge}.mapper</dataModel>
+	<dataModel name="NamespaceEntity">com.hhly.${basepackge}.entity</dataModel>
+<!-- 	<dataModel name="NamespaceDto">com.hhly.${basepackge}.dto</dataModel> -->
+	<dataModel name="NamespaceSqlMap">mybatis</dataModel>
+	
+	<outputModel name="ice" type="file" disabled="true">
+		${NamespaceIceServer?replace(".","/")}/AppOperationServiceImpl.java
+	</outputModel>
+	<outputModel name="service" type="file">
+		${NamespaceService?replace(".","/")}/${entityName}Service.java
+	</outputModel>
+	<outputModel name="serviceImpl" type="file">
+		${NamespaceServiceImpl?replace(".","/")}/${entityName}ServiceImpl.java
+	</outputModel>
+	<outputModel name="mapper" type="file">
+		${NamespaceMapper?replace(".","/")}/${entityName}Mapper.java
+	</outputModel>
+	<outputModel name="Entity" type="file">
+		${NamespaceEntity?replace(".","/")}/${entityName}Entity.java
+	</outputModel>
+	<outputModel name="mybatis" type="file">
+		${NamespaceSqlMap?replace(".","/")}/${entityName}Mapper.xml
+	</outputModel>
+	
+  </project>
+</codegen-config>

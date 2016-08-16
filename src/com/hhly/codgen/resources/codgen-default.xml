@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<codgen-config>
+	<project name="defaultProject" label="默认项目" outputEncoding="GBK" isDefault="true">
+		<dataModel name="defaultCopyright">
+			<![CDATA[ 
+/*
+{*******************************************************************
+{  ${projectLabel} v${copyright.version}													
+{  版权信息 (c) 2005-${(copyright.createDate)[0..3]} ${copyright.company}. 保留所有权利.					
+{  创建人：  ${copyright.author}
+{  审查人：
+{  模块：${table.tabComment?default(tableLabel)}											
+{  功能描述:										
+{															
+{  -----------------------------------------------------------------	
+{  维护历史:													
+{  日期        维护人        维护类型						
+{  -----------------------------------------------------------------	
+{  ${copyright.createDate}  ${copyright.author}        新建	
+{ 	                                                                     
+{  -----------------------------------------------------------------	
+{*******************************************************************	
+*/	
+			]]>
+		</dataModel>
+		<dataModel name="defaultJavaModelWithNoCopyright">
+		<![CDATA[
+/**
+ * 【${tableLabel}】 实体模型
+ * @author ${copyright.author}
+ *
+ */
+public class ${moduleName?cap_first}{
+	private static final long serialVersionUID = 1L;
+	
+	<#list table.columnList as column>
+	private ${column.columnSimpleClassName} ${column.columnName?uncap_first}; //${column.columnLabel}
+	</#list>
+	
+	/**
+	 *实例化一个"${tableLabel}"实体模型对象
+	 */
+	public ${moduleName?cap_first}() {
+		super();
+	}
+	
+	<#list table.columnList as column>
+	/**
+	 * 获取"${column.columnLabel}"
+	 * @return 返回"${column.columnLabel}"
+	 */
+	public ${column.columnSimpleClassName} get${column.columnName?cap_first}(){
+		return this.${column.columnName?uncap_first};
+	}
+	/**
+	 * 设置"${column.columnLabel}"
+	 * @param ${column.columnName?uncap_first} ${column.columnLabel}
+	 */
+	public void set${column.columnName?cap_first}(${column.columnSimpleClassName} ${column.columnName?uncap_first}){
+		this.${column.columnName?uncap_first} = ${column.columnName?uncap_first};
+	}
+	</#list>
+	@Override
+	public String toString(){
+		StringBuilder builder = new StringBuilder();
+		builder.append("${moduleName?cap_first} [")
+		<#list table.columnList as column>
+		<#if column_index==0>
+		.append("${column.columnName}=").append(this.get${column.columnName?cap_first}())
+		<#else>
+		.append(",${column.columnName}=").append(this.get${column.columnName?cap_first}())
+		</#if>
+		</#list>
+		.append("]");
+		return builder.toString();
+	}
+}		
+		]]>
+		</dataModel>
+		<dataModel name="defaultJavaModel">
+		<![CDATA[
+${defaultCopyright}
+
+${defaultJavaModelWithNoCopyright}
+		]]>
+		</dataModel>
+	</project>
+</codgen-config>

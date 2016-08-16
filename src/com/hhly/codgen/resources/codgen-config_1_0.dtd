@@ -1,0 +1,41 @@
+<!ELEMENT codgen-config (project+) >
+
+<!ELEMENT project (dbProvider?,buildConfigHandler*,dataModel*,template*,output*) >
+<!ATTLIST project name ID #REQUIRED>
+<!ATTLIST project label CDATA #REQUIRED>
+<!ATTLIST project outputEncoding CDATA #IMPLIED>
+<!ATTLIST project isDefault (true|false) #IMPLIED>
+<!ATTLIST project isEnable (true|false) #IMPLIED>
+<!ATTLIST project extends CDATA #IMPLIED>
+
+<!ELEMENT dbProvider (jdbcConfig,columnHandler*,splitorForLabelFromComment?) >
+<!ATTLIST dbProvider class CDATA #REQUIRED>
+
+<!ELEMENT jdbcConfig (driver,url,user,password) >
+<!ELEMENT driver (#PCDATA) >
+<!ELEMENT url (#PCDATA) >
+<!ELEMENT user (#PCDATA) >
+<!ELEMENT password (#PCDATA) >
+
+<!ELEMENT columnHandler EMPTY >
+<!ATTLIST columnHandler class CDATA #REQUIRED>
+
+<!ELEMENT splitorForLabelFromComment (#PCDATA) >
+
+<!ELEMENT buildConfigHandler EMPTY >
+<!ATTLIST buildConfigHandler class CDATA #REQUIRED>
+
+<!ELEMENT dataModel (#PCDATA) > 
+<!ATTLIST dataModel   name          CDATA           #REQUIRED>
+
+<!ELEMENT template (#PCDATA) >
+<!ATTLIST template   name   ID  #REQUIRED>
+<!ATTLIST template   type    (file|text)  #REQUIRED>
+
+<!ELEMENT output (#PCDATA) >
+<!ATTLIST output   name   ID  #REQUIRED>
+<!ATTLIST output   type    (file|text)  #REQUIRED>
+<!ATTLIST output   templateName  IDREF #IMPLIED>
+<!ATTLIST output   templateFile  CDATA #IMPLIED>
+<!ATTLIST output   templateText  CDATA #IMPLIED>
+<!ATTLIST output   disabled (true|false) #IMPLIED>
